@@ -3,6 +3,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from dataset import CarDataset
+from model import make_model
 
 # Ignore warnings
 import warnings
@@ -26,3 +27,12 @@ if __name__ == "__main__":
         left = batch["image_left"]
         right = batch["image_right"]
         pdb.set_trace()
+        model = make_model()
+        opt = keras.optimizers.Adam(lr=0.001 , decay=0.0)
+        model.compile(optimizer=opt,
+                        metrics=['acc'],
+                        loss={'angle_out': 'categorical_crossentropy', 
+                                'throttle_out': 'categorical_crossentropy'},
+                        loss_weights={'angle_out': 0.5,
+                                      'throttle_out': 1.0})
+        
