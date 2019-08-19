@@ -12,7 +12,7 @@ def make_model():
     left_image_in = Input(shape=(240, 320, 3),name='img_left')
     right_image_in = Input(shape=(240, 320, 3),name='img_right')
     # concat into a 6 channel input volume
-    x = Concatenate([left_image_in, right_image_in], axis=2)
+    x = concatenate([left_image_in, right_image_in], axis=2)
     # FCN layers
     x = Convolution2D(24, (5, 5), strides=(2, 2), activation='relu')(x)
     x = Convolution2D(32, (5, 5), strides=(2, 2), activation='relu')(x)

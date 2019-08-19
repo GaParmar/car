@@ -36,3 +36,21 @@ class CarDataset(Dataset):
         }
         return sample
 
+def data_keras(fname):
+    f = open(fname)
+    data = pickle.load(f)
+    f.close()
+    images = data["X"]
+    throttle_steer = data["Y"]
+    num = len(images)
+    X = []
+    Y = []
+    for i in range(100):
+        img_L = torch.from_numpy(images[i][:,0:320,:])
+        img_R = torch.from_numpy(images[i][:,320:,:])
+        stack = np.concatenate((img_L, img_R), axis=2)
+        X.append(stack)
+        Y.append([throttle_steer[0], throttle_steer[1]])
+    X = np.array(X)
+    Y = np.array(Y)
+    return X,Y
