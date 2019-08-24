@@ -16,4 +16,4 @@ class Camera:
         return self.device.read()
 
 if __name__ == "__main__":
-    
+    pass
