@@ -12,5 +12,9 @@
  - Red/Black/White/Green
  - skip red wire if it is already being powered
 
-## ROS infos
+## ROS architecture overview
  - Catkin Workspace - "/home/pi/ros_catkin_ws"
+ - Package - "autonomous_car"
+
+### Camera ROS Node
+ - 
