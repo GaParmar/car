@@ -1,7 +1,7 @@
 <launch>
 	<node 
 		pkg="autonomous_car"
-		type="camera_node"
+		type="camera_node.py"
 		name="camera_node"
-		respaw="false" />
+		respawn="false" />
 </launch>
