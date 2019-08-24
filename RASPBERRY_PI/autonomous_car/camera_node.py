@@ -3,6 +3,7 @@ import rospy
 import time
 import numpy as np
 from rospy.numpy_msg import numpy_msg
+from sensor_msgs.msg import Image
 import cv2
 import pdb
 import sys
@@ -37,13 +38,16 @@ if __name__ == "__main__":
     }
     # Initilize the ros publisher node
     rospy.init_node(args["node_name"])
-    pub = rospy.Publisher(args["topic_name"], numpy_msg(Int8), queue_size=1)
+    pub = rospy.Publisher(args["topic_name"], Image, queue_size=1)
     # make the camera object
     camera = Camera()
     while not rospy.is_shutdown():
         start = time.time()
         # take a new image and publish it
-        pub.publish(camera.take_image())
+        status,img = camera.take_image()
+        image = Image()
+        image.data = img.flatten().tolist()
+        pub.publish(image)
         # busy wait while frequency requirement is met
         while(time.time()-start < args["rate"]):
             pass
