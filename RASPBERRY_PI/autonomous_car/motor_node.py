@@ -5,13 +5,13 @@ from std_msgs.msg import String, Float32
 from smbus2 import SMBus
 
 class ArduinoMotor:
-    def __init__(self):
+    def __init__(self, addr):
         self.state = {
             "throttle"  : -1,
             "steer"     : 0,
             "direction" : "forward"
         }
-        self.arduino_i2c_addr = 0x8
+        self.arduino_i2c_addr = addr
         self.i2c_bus = SMBus(1)
 
     def send_data(self):
@@ -26,10 +26,11 @@ if __name__ == "__main__":
     args = {
         "node_name"         : "motor_node",
         "rate"              : 0.1,
+        "arduino_i2c_addr"  : 0x8
     }
     rospy.init_node(args["node_name"])
 
-    m = ArduinoMotor()
+    m = ArduinoMotor(args["arduino_i2c_addr"])
     
     # listen to relevant topic from socket server node
     rospy.Subscriber("update_throttle", Float32,
