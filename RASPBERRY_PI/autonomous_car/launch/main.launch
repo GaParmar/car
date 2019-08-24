@@ -1,0 +1,7 @@
+<launch>
+	<node 
+		pkg="autonomous_car"
+		type="camera_node"
+		name="camera_node"
+		respaw="false" />
+</launch>
