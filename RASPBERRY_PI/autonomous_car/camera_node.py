@@ -4,7 +4,6 @@ import time
 import numpy as np
 from rospy.numpy_msg import numpy_msg
 from sensor_msgs.msg import Image
-from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import pdb
 import sys
