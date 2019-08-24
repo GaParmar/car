@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="js/p5.js"></script>
+        <script src="js/d3.js"></script>
+        <script src="js/p5.sound.js"></script>
+        <script src="js/p5.dom.js"></script>
+        <script src="js/delaunay.js"></script>
+        <script src="js/d3_gauge.js"></script>
+        <script src="js/send_post.js"></script>
+        
+        
+
+        <link rel="stylesheet" href="css/styles.css">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+    
+        <title>CAR DASHBOARD</title>
+    </head>
+    <body style="background-color:rgb(0,0,0);">
+
+        <div class="input-group mt-3 mb-3 mx-auto"
+         style="width: 200px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Status: </span>
+            </div>
+            <div style="
+                text-align: center;
+                vertical-align: middle;
+                line-height: 40px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50px;
+                color: green"
+                id="status_content">
+                Waiting
+            </div>
+        </div>
+        <div class="input-group mt-3 mb-3 mx-auto"
+         style="width: 250px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Logging Status: </span>
+            </div>
+            <div style="
+                text-align: center;
+                vertical-align: middle;
+                line-height: 40px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 75px;
+                color: green"
+                id="log_status_content">
+                 Standby
+            </div>
+        </div>
+        <div class="input-group mt-3 mb-3 mx-auto"
+         style="width: 300px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Log Dir: </span>
+            </div>
+            <input style="
+                text-align: center;
+                vertical-align: middle;
+                line-height: 40px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 150px;"
+                id="log_dir_content"
+                class="form-control"
+                placeholder="~/LOG/default"
+                aria-label="~/LOG/default">
+            </input>
+        </div>
+
+
+        <div id="container-thrust">
+            <div id="thrust-gauge"></div>
+        </div>
+
+        <div id="container-steer">
+            <div id="steer-gauge"></div>
+        </div>
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

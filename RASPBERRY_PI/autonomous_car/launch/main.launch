@@ -4,4 +4,10 @@
 		type="camera_node.py"
 		name="camera_node"
 		respawn="false" />
+	<node 
+		pkg="autonomous_car"
+		type="socket_server_node.py"
+		name="socket_server"
+		respawn="false"
+		/>
 </launch>
