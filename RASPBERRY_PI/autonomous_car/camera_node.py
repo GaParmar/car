@@ -45,5 +45,6 @@ if __name__ == "__main__":
         # take a new image and publish it
         pub.publish(camera.take_image())
         # busy wait while frequency requirement is met
-        while(time.time()-start < args["rate"])
+        while(time.time()-start < args["rate"]):
+            pass
     camera.close()
