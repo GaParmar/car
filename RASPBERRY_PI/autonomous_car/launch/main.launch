@@ -10,4 +10,10 @@
 		name="socket_server"
 		respawn="false"
 		/>
+	<node
+		pkg="autonomous_car"
+		type="motor_node.py"
+		name="motor_node"
+		respawn="true"
+		/>
 </launch>
