@@ -72,4 +72,3 @@ if(__name__ == "__main__"):
         # busy wait while frequency requirement is met
         while(time.time()-start < args["rate"]):
             pass
-    init_node()
