@@ -37,7 +37,7 @@ class SocketServer:
     """
     Publishes the contents of the current state to the relative topics
     """
-    def public_topics(self):
+    def publish_topics(self):
         self.pub_throttle.publish(self.state["throttle"])
         self.pub_steer.publish(self.state["steer"])
         self.pub_log_status.publish(self.state["log_status"])
