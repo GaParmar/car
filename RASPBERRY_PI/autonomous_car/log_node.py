@@ -8,6 +8,7 @@ import pickle
 import os
 from copy import deepcopy
 from cv_bridge import CvBridge, CvBridgeError
+from sensor_msgs.msg import Image
 
 class Logger:
     def __init__(self):
