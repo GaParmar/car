@@ -66,7 +66,7 @@ class SocketServer:
 if __name__ == "__main__":
     args = {
         "node_name"         : "socket_node",
-        "rate"              : 0.1,
+        "rate"              : 0.01,
         "port"              : 8080
     }
     # initialize the socket server node
