@@ -34,7 +34,7 @@ if __name__ == "__main__":
     args = {
         "node_name"         : "camera_node",
         "topic_name"        : "camera_frames",
-        "rate"              : 0.1,
+        "rate"              : 0.01,
     }
     # Initilize the ros publisher node
     rospy.init_node(args["node_name"])
