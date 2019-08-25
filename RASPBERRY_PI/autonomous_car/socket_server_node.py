@@ -41,7 +41,7 @@ class SocketServer:
         self.pub_throttle.publish(self.state["throttle"])
         self.pub_steer.publish(self.state["steer"])
         self.pub_log_status.publish(self.state["log_status"])
-        self.pub_dir.publish(self.state["log_dir"])
+        self.pub_log_dir.publish(self.state["log_dir"])
 
     """
     keep listening to the port and publish messages
