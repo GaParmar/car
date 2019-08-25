@@ -4,6 +4,7 @@ import time
 import numpy as np
 from rospy.numpy_msg import numpy_msg
 from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import pdb
 import sys
@@ -41,13 +42,14 @@ if __name__ == "__main__":
     pub = rospy.Publisher(args["topic_name"], Image, queue_size=1)
     # make the camera object
     camera = Camera()
+    bridge = CvBridge()
     while not rospy.is_shutdown():
         start = time.time()
         # take a new image and publish it
         status,img = camera.take_image()
-        image = Image()
-        image.data = img.flatten().tolist()
+        image = bridge.cv2_to_imgmsg(img, "bgr8")
         pub.publish(image)
+
         # busy wait while frequency requirement is met
         while(time.time()-start < args["rate"]):
             pass
