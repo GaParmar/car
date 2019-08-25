@@ -31,14 +31,18 @@ if __name__ == "__main__":
     rospy.init_node(args["node_name"])
 
     m = ArduinoMotor(args["arduino_i2c_addr"])
+
+    def update_throttle(data):
+        m.state["throttle"] = int(data.data)
+    def update_direction(data):
+        m.state["direction"] = data.data
+    def update_steer_angle(data):
+        m.state["steer"] = int(data.data)
     
     # listen to relevant topic from socket server node
-    rospy.Subscriber("update_throttle", Float32,
-                        lambda data: m.state["throttle"] = int(data.data))
-    rospy.Subscriber("update_direction", String,
-                        lambda data: m.state["direction"] = data.data)
-    rospy.Subscriber("update_steer_angle", Float32,
-                        lambda data: m.state["steer"] = int(data.data))
+    rospy.Subscriber("update_throttle", Float32, update_throttle)
+    rospy.Subscriber("update_direction", String, update_direction)
+    rospy.Subscriber("update_steer_angle", Float32, update_steer_angle)
 
     while not rospy.is_shutdown():
         start = time.time()
