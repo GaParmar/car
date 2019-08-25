@@ -16,4 +16,10 @@
 		name="motor_node"
 		respawn="true"
 		/>
+	<node
+		pkg="autonomous_car"
+		type="log_node.py"
+		name="log_node"
+		respawn="false"
+		/>
 </launch>
