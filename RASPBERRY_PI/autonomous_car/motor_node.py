@@ -15,6 +15,7 @@ class ArduinoMotor:
         self.i2c_bus = SMBus(1)
 
     def send_data(self):
+        print(self.state)
         # send the throttle first
         data = [ord('t'), int(self.state["throttle"])]
         self.i2c_bus.write_i2c_block_data(self.arduino_i2c_addr,0,data)
