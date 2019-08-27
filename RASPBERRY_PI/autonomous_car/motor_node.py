@@ -7,8 +7,8 @@ from smbus2 import SMBus
 class ArduinoMotor:
     def __init__(self, addr):
         self.state = {
-            "throttle"  : -1,
-            "steer"     : 0,
+            "throttle"  : 100,
+            "steer"     : 90,
             "direction" : "forward"
         }
         self.arduino_i2c_addr = addr
@@ -47,7 +47,10 @@ if __name__ == "__main__":
 
     while not rospy.is_shutdown():
         start = time.time()
-        m.send_data()
+        try:
+            m.send_data()
+        except:
+            print("could not send data")
         # busy wait while frequency requirement is met
         while(time.time()-start < args["rate"]):
             pass
