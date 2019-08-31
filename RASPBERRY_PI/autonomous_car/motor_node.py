@@ -26,7 +26,7 @@ class ArduinoMotor:
 if __name__ == "__main__":
     args = {
         "node_name"         : "motor_node",
-        "rate"              : 0.01,
+        "rate"              : 0.1,
         "arduino_i2c_addr"  : 0x8
     }
     rospy.init_node(args["node_name"])
