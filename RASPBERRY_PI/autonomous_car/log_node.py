@@ -47,7 +47,7 @@ if(__name__ == "__main__"):
     args = {
         "node_name"         : "log_node",
         "rate"              : 0.01,
-        "samples_per_file"  : 500,
+        "samples_per_file"  : 100,
     }
     # initialize the rosnode
     rospy.init_node(args["node_name"])
