@@ -34,7 +34,7 @@ class Logger:
         if self.log_status=="STANDBY" and data.data=="LOGGING":
             # make the logging dir if it does not exist
             if not os.path.exists(self.log_dir):
-                os.mkdir(self.log_dir)
+                os.makedirs(self.log_dir)
         # going from "LOGGING" to "STANDBY"
         elif self.log_status=="LOGGING" and data.data=="STANDBY":
             self.buffer = []
