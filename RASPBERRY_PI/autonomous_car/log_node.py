@@ -9,6 +9,12 @@ import os
 from copy import deepcopy
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
+import threading
+
+
+def save_to_file(buff, path):
+    with open(path, "wb") as f:
+        pickle.dump(buff, f)
 
 class Logger:
     def __init__(self):
@@ -46,7 +52,7 @@ class Logger:
 if(__name__ == "__main__"):
     args = {
         "node_name"         : "log_node",
-        "rate"              : 0.01,
+        "rate"              : 0.05,
         "samples_per_file"  : 100,
     }
     # initialize the rosnode
@@ -66,9 +72,14 @@ if(__name__ == "__main__"):
             log.current_data["timestamp"] = time.time()
             log.buffer.append(deepcopy(log.current_data))
             if len(log.buffer) > args["samples_per_file"]:
-                file_name = os.path.join(log.log_dir, "log%d.pkl"%log.file_counter)
-                with open(file_name, "wb") as f:
-                    pickle.dump(log.buffer, f)
+                file_name = os.path.join(log.log_dir,
+                                        "log%d.pkl"%log.file_counter)
+                # start a new thread to save to file
+                t = threading.Thread(target=save_to_file,
+                                        args=(log.buffer,file_name))
+                t.start()
+                # with open(file_name, "wb") as f:
+                #     pickle.dump(log.buffer, f)
                 log.file_counter += 1
                 log.buffer = []
 
