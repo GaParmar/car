@@ -8,10 +8,10 @@ import pdb
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="unpack log pickle files")
     parser.add_argument("--log_dir", type=str, 
-                        default="data/session_1",
+                        default="data/session_00",
                         help="path to log pkl files")
     parser.add_argument("--output_dir", type=str,
-                        default="prepared_data/session_1",
+                        default="prepared_data/session_00",
                         help="the output directory with unpacked samples")
     args = parser.parse_args()
 
@@ -29,7 +29,6 @@ if __name__ == "__main__":
         # unpickle the list of samples
         with open(log_file, "rb") as file:
             samples = pickle.load(file)
-            pdb.set_trace()
             for sample in samples:
                 output_file = os.path.join(args.output_dir,
                                     "ts%f.pkl"%sample["timestamp"])
