@@ -35,13 +35,13 @@ class Logger:
             # make the logging dir if it does not exist
             if not os.path.exists(self.log_dir):
                 os.makedirs(self.log_dir)
+            self.buffer = []
         # going from "LOGGING" to "STANDBY"
         elif self.log_status=="LOGGING" and data.data=="STANDBY":
-            self.buffer = []
+            pass 
         self.log_status = data.data
     def update_image(self, data):
         self.current_data["image"] = self.bridge.imgmsg_to_cv2(data, "bgr8")
-        pdb.set_trace()
 
 if(__name__ == "__main__"):
     args = {
