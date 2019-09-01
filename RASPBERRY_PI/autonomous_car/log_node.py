@@ -37,7 +37,7 @@ class Logger:
                 os.mkdirs(self.log_dir)
         # going from "LOGGING" to "STANDBY"
         elif self.log_status=="LOGGING" and data.data=="STANDBY":
-            pass
+            self.buffer = []
         self.log_status = data.data
     def update_image(self, data):
         self.current_data["steer"] = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -59,15 +59,17 @@ if(__name__ == "__main__"):
     rospy.Subscriber("camera_frames", Image, log.update_image)
     while not rospy.is_shutdown():
         start = time.time()
-        # add the data object to buffer
-        log.current_data["timestamp"] = time.time()
-        log.buffer.append(log.current_data)
-        if len(log.buffer) > args["samples_per_file"]:
-            file_name = os.path.join(log.log_dir, "log%6d"%log.file_counter)
-            with open(file_name, "wb") as f:
-                pickle.dump(log.buffer, f)
-            log.file_counter += 1
-            log.buffer = []
+
+        if log.log_status == "LOGGING":
+            # add the data object to buffer
+            log.current_data["timestamp"] = time.time()
+            log.buffer.append(log.current_data)
+            if len(log.buffer) > args["samples_per_file"]:
+                file_name = os.path.join(log.log_dir, "log%6d"%log.file_counter)
+                with open(file_name, "wb") as f:
+                    pickle.dump(log.buffer, f)
+                log.file_counter += 1
+                log.buffer = []
 
         # busy wait while frequency requirement is met
         while(time.time()-start < args["rate"]):
