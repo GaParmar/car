@@ -4,6 +4,6 @@ import os
 import sys
 import pdb
 
-with open("default/log1.pkl", "rb") as file:
+with open("default/log0", "rb") as file:
     emp = pickle.load(file)
     pdb.set_trace()

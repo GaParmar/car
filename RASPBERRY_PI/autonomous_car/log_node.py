@@ -64,9 +64,9 @@ if(__name__ == "__main__"):
         if log.log_status == "LOGGING":
             # add the data object to buffer
             log.current_data["timestamp"] = time.time()
-            log.buffer.append(log.current_data)
+            log.buffer.append(deepcopy(log.current_data))
             if len(log.buffer) > args["samples_per_file"]:
-                file_name = os.path.join(log.log_dir, "log%d"%log.file_counter)
+                file_name = os.path.join(log.log_dir, "log%d.pkl"%log.file_counter)
                 with open(file_name, "wb") as f:
                     pickle.dump(log.buffer, f)
                 log.file_counter += 1
