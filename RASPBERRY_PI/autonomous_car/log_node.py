@@ -40,7 +40,7 @@ class Logger:
             self.buffer = []
         self.log_status = data.data
     def update_image(self, data):
-        self.current_data["steer"] = self.bridge.imgmsg_to_cv2(data, "bgr8")
+        self.current_data["image"] = self.bridge.imgmsg_to_cv2(data, "bgr8")
 
 if(__name__ == "__main__"):
     args = {
