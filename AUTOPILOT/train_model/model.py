@@ -37,3 +37,15 @@ def make_model():
     #                     'throttle_out': 'mean_absolute_error'},
     #               loss_weights={'angle_out': 0.9, 'throttle_out': .01})
     return model
+
+def make_mobilenet_model():
+    import keras
+    from keras.applications.mobilenet_v2 import MobileNetV2
+    from keras.models import Sequential
+    from keras.layers import Activation
+    m = MobileNetV2(input_shape=(240, 320, 6), include_top=True,
+                weights=None,classes=2, alpha=0.5)
+    wrapper = Sequential()
+    wrapper.add(m)
+    wrapper.add(Activation('sigmoid'))
+    

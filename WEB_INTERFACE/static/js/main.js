@@ -56,12 +56,8 @@ function clean_up_down(val){
     if (val <= 0.0){
         val = 0.0;
     }
-    // scale val from [0.0,1.0] to [00, 30]
+    // scale val from [0.0,1.0] to [00, 15]
     let scaled = val*30.0;
-    // clip the value at 110
-    if (scaled>15){
-      scaled = 15;
-    }
     return 90+scaled;
 }
 

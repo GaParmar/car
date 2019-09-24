@@ -8,12 +8,16 @@ import pdb
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="unpack log pickle files")
     parser.add_argument("--log_dir", type=str, 
-                        default="data/session2",
+                        default="raw_data/test_verano_room_stand",
                         help="path to log pkl files")
     parser.add_argument("--output_dir", type=str,
-                        default="prepared_data/session_2",
+                        default="prepared_data/",
                         help="the output directory with unpacked samples")
     args = parser.parse_args()
+
+    # output dir
+    args.output_dir = os.path.join(args.output_dir,
+                        os.path.basename(args.log_dir))
 
     log_files = []
     # get all pickle files

@@ -1,11 +1,11 @@
 from flask import Flask, render_template, json, request
 import pdb
 import os
-from Socket import Socket
+from Socket import Socket, ETHERNET_IP, WIFI_IP
 
 app = Flask(__name__,static_url_path='')
 
-S = Socket()
+S = Socket(ip="192.168.4.19")
 
 @app.route('/<path:path>/css')
 def send_js(path):
