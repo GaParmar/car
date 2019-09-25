@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # output dir
     args.output_dir = os.path.join(args.output_dir,
-                        os.path.basename(args.log_dir))
+                        os.path.basename(os.path.abspath(args.log_dir)))
 
     log_files = []
     # get all pickle files

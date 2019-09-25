@@ -10,3 +10,4 @@ def make_mobilenet_model():
     wrapper.add(m)
     wrapper.add(Activation('sigmoid'))
     return wrapper
+
