@@ -14,6 +14,9 @@ from pytorch_transforms import transform_sample
 
 SEED = 101
 ROOT = "./prepared_data/test_verano_room_stand"
+dataset_dirs = ["./prepared_data/ucsd_track_0",
+                "./prepared_data/ucsd_track_1",
+                "./prepared_data/ucsd_track_2"]
 SPLIT_RATIO = 0.1
 EPOCHS = 2
 
@@ -27,9 +30,11 @@ if __name__ == "__main__":
     # Make the datasets
     all_file_paths = []
     # get a list of all files in the preprocessed pkl
-    for file in os.listdir(ROOT):
-        if ".pkl" in file:
-            all_file_paths.append(os.path.join(ROOT, file))
+    for path in dataset_dirs:
+        for file in os.listdir(path):
+            if ".pkl" in file:
+                all_file_paths.append(os.path.join(ROOT, file))
+    
     all_file_paths.sort()
     num_train = int(len(all_file_paths)*SPLIT_RATIO)
     train_paths = all_file_paths[0:num_train]
