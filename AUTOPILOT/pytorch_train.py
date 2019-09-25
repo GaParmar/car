@@ -13,11 +13,10 @@ from pytorch_dataset import AutonomousCarDataset
 from pytorch_transforms import transform_sample
 
 SEED = 101
-ROOT = "./prepared_data/test_verano_room_stand"
 dataset_dirs = ["./prepared_data/ucsd_track_0",
                 "./prepared_data/ucsd_track_1",
                 "./prepared_data/ucsd_track_2"]
-SPLIT_RATIO = 0.1
+SPLIT_RATIO = 0.8
 EPOCHS = 2
 
 if __name__ == "__main__":
@@ -57,6 +56,7 @@ if __name__ == "__main__":
     crit = nn.L1Loss()
 
     train_losses = []
+    test_losses = []
 
     # start training
     for epoch in range(EPOCHS):
@@ -79,6 +79,23 @@ if __name__ == "__main__":
         train_epoch_loss /= len(train_loader)
         train_losses.append(train_epoch_loss)
         print("epoch %d training loss: %.6f"%(epoch, train_epoch_loss))
+
+        # eval on test set
+        model.eval()
+        test_epoch_loss = 0.0
+        for i, sample in enumerate(test_loader):
+            left = sample["image_left"]
+            right = sample["image_right"]
+            throttle = sample["throttle"].reshape(-1,1)
+            steer = sample["steer"].reshape(-1,1)
+            gt = torch.cat((throttle, steer), 1).float()
+            pred = model(left, right)
+            loss = crit(pred, gt)
+            test_epoch_loss += loss
+        test_epoch_loss /= len(test_loader)
+        test_losses.append(test_epoch_loss)
+        print("epoch %d test loss: %.6f"%(epoch, test_epoch_loss))
+
 
 
 
