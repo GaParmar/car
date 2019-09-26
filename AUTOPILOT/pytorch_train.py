@@ -84,6 +84,7 @@ if __name__ == "__main__":
                 left = left.to('cuda')
                 right = right.to('cuda')
                 gt = gt.to('cuda')
+
             pred = model(left, right)
             loss = crit(pred, gt)
             loss.backward()
