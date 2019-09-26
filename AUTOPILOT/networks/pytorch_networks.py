@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 from torch.utils.model_zoo import load_url as load_state_dict_from_url
 
-from pytorch_mobilenet import MobileNetV2
+from networks.pytorch_mobilenet import MobileNetV2
 
 weights_url = 'https://download.pytorch.org/models/mobilenet_v2-b0353104.pth'
 
@@ -18,7 +18,7 @@ class MobilenetV2Pilot(nn.Module):
         if pretrained_weights:
             state_dict = load_state_dict_from_url(weights_url, progress=True)
             # delete first layer and classification layers at end
-            for key in state_dict:
+            for key in dict(state_dict):
                 if "features.0.0" in key or "classifier.1" in key:
                     del state_dict[key]
             self.backbone.load_state_dict(state_dict, strict=False)

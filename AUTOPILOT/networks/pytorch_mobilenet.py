@@ -104,11 +104,18 @@ class MobileNetV2(nn.Module):
         # make it nn.Sequential
         self.features = nn.Sequential(*features)
 
+        if torch.cuda.is_available():
+            self.features = self.features.cuda()
+
+
         # building classifier
         self.classifier = nn.Sequential(
             nn.Dropout(0.2),
             nn.Linear(self.last_channel, num_classes),
         )
+
+        if torch.cuda.is_available():
+            self.classifier = self.classifier.cuda()
 
         # weight initialization
         for m in self.modules():

@@ -34,7 +34,7 @@ class AutonomousCarDataset(Dataset):
   def __getitem__(self, idx):
     curr_path = self.all_files[idx]
     with open(curr_path, "rb") as f:
-        raw_sample = pickle.load(f)
+      raw_sample = pickle.load(f)
     sample = { "image"      : Image.fromarray(raw_sample["image"].astype(np.uint8)),
                "throttle"   : raw_sample["throttle"],
                "steer"      : raw_sample["steer"],
