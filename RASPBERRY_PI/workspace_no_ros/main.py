@@ -5,6 +5,7 @@ import socket
 import json
 import cv2
 import pdb
+import numpy as np
 
 if __name__ == "__main__":
 
@@ -20,6 +21,13 @@ if __name__ == "__main__":
     # d_conns["socket"] = d_listeners["socket"].accept()
         # data = d_conns["socket"].recv()
         # print(data)
+
+    # test the ncs
+    pdb.set_trace()
+    rnd = np.zeros((1,3,320,240))
+    net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
+    net.setPreferableTarget(cv.dnn.DNN_TARGET_MYRIAD)
+
 
     # the main loop
     while True:
