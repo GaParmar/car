@@ -6,7 +6,7 @@ period = 0.05
 port = 8080
 socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket.bind(('', port))
-conn = Client(('localhost', 6000), authkey='secret')
+conn = Client(('localhost', 6000), authkey=b'secret')
 
 while True:
     start = time.time()

@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     # start the process listening to incoming socket
     process = Popen(['python3', './socket_process.py'])
-    d_listeners["socket"] = Listener(('localhost', 6000), authkey="secret")
+    d_listeners["socket"] = Listener(('localhost', 6000), authkey=b"secret")
     d_conns["socket"] = d_listeners["socket"].accept()
 
     # the main loop
