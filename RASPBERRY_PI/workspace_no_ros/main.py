@@ -4,6 +4,7 @@ from multiprocessing.connection import Listener
 
 if __name__ == "__main__":
     d_listeners = {}
+    d_conns = {}
 
     # start the process listening to incoming socket
     process = Popen(['python3', './socket_process.py'])
