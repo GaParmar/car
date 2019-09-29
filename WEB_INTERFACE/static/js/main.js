@@ -4,6 +4,7 @@ var steerGuage;
 document.getElementById("log_dir_content").value = "/home/pi/LOG/default"
 
 var log_status = "STANDBY"
+var manual_status = "MANUAL"
 
 function onDocumentReady() {
   thrustGauge = gauge('#thrust-gauge', {
@@ -89,12 +90,22 @@ setInterval(()=>{
     lr = clean_left_right(controller.axes[2]);
     let start_logging = controller.buttons[5].pressed;
     let stop_logging  = controller.buttons[4].pressed;
+    let start_manual = controller.buttons[7].pressed;
+    let stop_manual  = controller.buttons[6].pressed;
     if(start_logging){
         log_status = "LOGGING";
     }
     if(stop_logging){
         log_status = "STANDBY";
     }
+
+    if(stop_manual){
+      log_status = "INFERENCE";
+    }
+    if(start_manual){
+        log_status = "MANUAL";
+    }
+
     let status = document.getElementById('log_status_content');
     let log_dir = document.getElementById("log_dir_content").value;
     status.innerHTML = log_status;

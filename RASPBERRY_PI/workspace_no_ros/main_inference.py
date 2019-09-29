@@ -6,6 +6,8 @@ import json
 import cv2
 import pdb
 import numpy as np
+from arduino_motor import ArduinoMotor
+
 
 if __name__ == "__main__":
 
@@ -23,29 +25,44 @@ if __name__ == "__main__":
         # print(data)
 
     # test the ncs
-    pdb.set_trace()
-    image = cv2.imread("face.png")
-    (h, w) = image.shape[:2]
-    blob = cv2.dnn.blobFromImage(cv2.resize(image, (320, 240)), 1.0, (320, 240), (104.0, 177.0, 123.0))
+
+    m = ArduinoMotor()
+    
+    
 
     net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
     net.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
     
-    net.setInput(blob, "left")
-    net.setInput(blob, "right")
-    out = net.forward()
 
     # the main loop
     while True:
-        start = time.time()
+
+        ret, frame = device.read()
+
+        left = frame[:,:320]
+        right = frame[:,320:]
+
+
+        blob = cv2.dnn.blobFromImage(left, 1.0, (320, 240), (104.0, 177.0, 123.0))
+        net.setInput(blob, "left")
+
+        blob = cv2.dnn.blobFromImage(right, 1.0, (320, 240), (104.0, 177.0, 123.0))
+        net.setInput(blob, "right")
+
+        out = net.forward()
+
+        throttle = out[0] * 15 + 90
+        steer = out[1] * 60 + 60
+
 
         data_raw,addr = socket.recvfrom(1024)
         data = json.loads(data_raw)
 
-        status, img = device.read()
-        
-        pdb.set_trace()
+        if(data["log_status"] != "INFERENCE"):
+            data = {
+                "throttle":throttle,
+                "steer":steer,
+            }
 
+        m.send_data(data)
 
-        while time.time()-start < 1:
-            pass
