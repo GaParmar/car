@@ -24,10 +24,16 @@ if __name__ == "__main__":
 
     # test the ncs
     pdb.set_trace()
-    rnd = np.zeros((1,3,320,240))
-    net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
-    net.setPreferableTarget(cv.dnn.DNN_TARGET_MYRIAD)
+    image = cv2.imread("face.png")
+    (h, w) = image.shape[:2]
+    blob = cv2.dnn.blobFromImage(cv2.resize(image, (320, 240)), 1.0, (320, 240), (104.0, 177.0, 123.0))
 
+    net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
+    net.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
+    
+    net.setInput(blob, "left")
+    net.setInput(blob, "right")
+    out = net.forward()
 
     # the main loop
     while True:
