@@ -5,7 +5,7 @@ from Socket import Socket, ETHERNET_IP, WIFI_IP
 
 app = Flask(__name__,static_url_path='')
 
-S = Socket(ip="192.168.2.9")
+S = Socket(ip="192.168.4.19")
 
 @app.route('/<path:path>/css')
 def send_js(path):
