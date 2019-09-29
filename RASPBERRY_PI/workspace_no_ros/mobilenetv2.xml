@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <net batch="1" name="mobilenetv2" version="6">
 	<layers>
-		<layer id="0" name="left" precision="FP32" type="Input">
+		<layer id="0" name="left" precision="FP16" type="Input">
 			<output>
 				<port id="0">
 					<dim>1</dim>
@@ -11,7 +11,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="1" name="right" precision="FP32" type="Input">
+		<layer id="1" name="right" precision="FP16" type="Input">
 			<output>
 				<port id="0">
 					<dim>1</dim>
@@ -21,7 +21,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="2" name="316" precision="FP32" type="Concat">
+		<layer id="2" name="316" precision="FP16" type="Concat">
 			<data axis="1"/>
 			<input>
 				<port id="0">
@@ -46,7 +46,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="3" name="317" precision="FP32" type="Convolution">
+		<layer id="3" name="317" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="3,3" output="32" pads_begin="1,1" pads_end="1,1" strides="2,2"/>
 			<input>
 				<port id="0">
@@ -65,11 +65,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="0" size="6912"/>
-				<biases offset="6912" size="128"/>
+				<weights offset="0" size="3456"/>
+				<biases offset="3456" size="64"/>
 			</blobs>
 		</layer>
-		<layer id="4" name="319" precision="FP32" type="Clamp">
+		<layer id="4" name="319" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -88,7 +88,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="5" name="320" precision="FP32" type="Convolution">
+		<layer id="5" name="320" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="32" kernel="3,3" output="32" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -107,11 +107,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="7040" size="1152"/>
-				<biases offset="8192" size="128"/>
+				<weights offset="3520" size="576"/>
+				<biases offset="4096" size="64"/>
 			</blobs>
 		</layer>
-		<layer id="6" name="322" precision="FP32" type="Clamp">
+		<layer id="6" name="322" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -130,7 +130,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="7" name="323" precision="FP32" type="Convolution">
+		<layer id="7" name="323" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="16" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -149,11 +149,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="8320" size="2048"/>
-				<biases offset="10368" size="64"/>
+				<weights offset="4160" size="1024"/>
+				<biases offset="5184" size="32"/>
 			</blobs>
 		</layer>
-		<layer id="8" name="325" precision="FP32" type="Convolution">
+		<layer id="8" name="325" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="96" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -172,11 +172,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="10432" size="6144"/>
-				<biases offset="16576" size="384"/>
+				<weights offset="5216" size="3072"/>
+				<biases offset="8288" size="192"/>
 			</blobs>
 		</layer>
-		<layer id="9" name="327" precision="FP32" type="Clamp">
+		<layer id="9" name="327" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -195,7 +195,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="10" name="328" precision="FP32" type="Convolution">
+		<layer id="10" name="328" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="96" kernel="3,3" output="96" pads_begin="1,1" pads_end="1,1" strides="2,2"/>
 			<input>
 				<port id="0">
@@ -214,11 +214,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="16960" size="3456"/>
-				<biases offset="20416" size="384"/>
+				<weights offset="8480" size="1728"/>
+				<biases offset="10208" size="192"/>
 			</blobs>
 		</layer>
-		<layer id="11" name="330" precision="FP32" type="Clamp">
+		<layer id="11" name="330" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -237,7 +237,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="12" name="331" precision="FP32" type="Convolution">
+		<layer id="12" name="331" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="24" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -256,11 +256,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="20800" size="9216"/>
-				<biases offset="30016" size="96"/>
+				<weights offset="10400" size="4608"/>
+				<biases offset="15008" size="48"/>
 			</blobs>
 		</layer>
-		<layer id="13" name="333" precision="FP32" type="Convolution">
+		<layer id="13" name="333" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="144" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -279,11 +279,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="30112" size="13824"/>
-				<biases offset="43936" size="576"/>
+				<weights offset="15056" size="6912"/>
+				<biases offset="21968" size="288"/>
 			</blobs>
 		</layer>
-		<layer id="14" name="335" precision="FP32" type="Clamp">
+		<layer id="14" name="335" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -302,7 +302,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="15" name="336" precision="FP32" type="Convolution">
+		<layer id="15" name="336" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="144" kernel="3,3" output="144" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -321,11 +321,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="44512" size="5184"/>
-				<biases offset="49696" size="576"/>
+				<weights offset="22256" size="2592"/>
+				<biases offset="24848" size="288"/>
 			</blobs>
 		</layer>
-		<layer id="16" name="338" precision="FP32" type="Clamp">
+		<layer id="16" name="338" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -344,7 +344,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="17" name="339" precision="FP32" type="Convolution">
+		<layer id="17" name="339" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="24" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -363,11 +363,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="50272" size="13824"/>
-				<biases offset="64096" size="96"/>
+				<weights offset="25136" size="6912"/>
+				<biases offset="32048" size="48"/>
 			</blobs>
 		</layer>
-		<layer id="18" name="341" precision="FP32" type="Eltwise">
+		<layer id="18" name="341" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -392,7 +392,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="19" name="342" precision="FP32" type="Convolution">
+		<layer id="19" name="342" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="144" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -411,11 +411,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="64192" size="13824"/>
-				<biases offset="78016" size="576"/>
+				<weights offset="32096" size="6912"/>
+				<biases offset="39008" size="288"/>
 			</blobs>
 		</layer>
-		<layer id="20" name="344" precision="FP32" type="Clamp">
+		<layer id="20" name="344" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -434,7 +434,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="21" name="345" precision="FP32" type="Convolution">
+		<layer id="21" name="345" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="144" kernel="3,3" output="144" pads_begin="1,1" pads_end="1,1" strides="2,2"/>
 			<input>
 				<port id="0">
@@ -453,11 +453,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="78592" size="5184"/>
-				<biases offset="83776" size="576"/>
+				<weights offset="39296" size="2592"/>
+				<biases offset="41888" size="288"/>
 			</blobs>
 		</layer>
-		<layer id="22" name="347" precision="FP32" type="Clamp">
+		<layer id="22" name="347" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -476,7 +476,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="23" name="348" precision="FP32" type="Convolution">
+		<layer id="23" name="348" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="32" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -495,11 +495,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="84352" size="18432"/>
-				<biases offset="102784" size="128"/>
+				<weights offset="42176" size="9216"/>
+				<biases offset="51392" size="64"/>
 			</blobs>
 		</layer>
-		<layer id="24" name="350" precision="FP32" type="Convolution">
+		<layer id="24" name="350" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="192" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -518,11 +518,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="102912" size="24576"/>
-				<biases offset="127488" size="768"/>
+				<weights offset="51456" size="12288"/>
+				<biases offset="63744" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="25" name="352" precision="FP32" type="Clamp">
+		<layer id="25" name="352" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -541,7 +541,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="26" name="353" precision="FP32" type="Convolution">
+		<layer id="26" name="353" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="192" kernel="3,3" output="192" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -560,11 +560,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="128256" size="6912"/>
-				<biases offset="135168" size="768"/>
+				<weights offset="64128" size="3456"/>
+				<biases offset="67584" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="27" name="355" precision="FP32" type="Clamp">
+		<layer id="27" name="355" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -583,7 +583,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="28" name="356" precision="FP32" type="Convolution">
+		<layer id="28" name="356" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="32" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -602,11 +602,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="135936" size="24576"/>
-				<biases offset="160512" size="128"/>
+				<weights offset="67968" size="12288"/>
+				<biases offset="80256" size="64"/>
 			</blobs>
 		</layer>
-		<layer id="29" name="358" precision="FP32" type="Eltwise">
+		<layer id="29" name="358" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -631,7 +631,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="30" name="359" precision="FP32" type="Convolution">
+		<layer id="30" name="359" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="192" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -650,11 +650,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="160640" size="24576"/>
-				<biases offset="185216" size="768"/>
+				<weights offset="80320" size="12288"/>
+				<biases offset="92608" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="31" name="361" precision="FP32" type="Clamp">
+		<layer id="31" name="361" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -673,7 +673,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="32" name="362" precision="FP32" type="Convolution">
+		<layer id="32" name="362" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="192" kernel="3,3" output="192" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -692,11 +692,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="185984" size="6912"/>
-				<biases offset="192896" size="768"/>
+				<weights offset="92992" size="3456"/>
+				<biases offset="96448" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="33" name="364" precision="FP32" type="Clamp">
+		<layer id="33" name="364" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -715,7 +715,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="34" name="365" precision="FP32" type="Convolution">
+		<layer id="34" name="365" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="32" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -734,11 +734,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="193664" size="24576"/>
-				<biases offset="218240" size="128"/>
+				<weights offset="96832" size="12288"/>
+				<biases offset="109120" size="64"/>
 			</blobs>
 		</layer>
-		<layer id="35" name="367" precision="FP32" type="Eltwise">
+		<layer id="35" name="367" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -763,7 +763,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="36" name="368" precision="FP32" type="Convolution">
+		<layer id="36" name="368" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="192" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -782,11 +782,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="218368" size="24576"/>
-				<biases offset="242944" size="768"/>
+				<weights offset="109184" size="12288"/>
+				<biases offset="121472" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="37" name="370" precision="FP32" type="Clamp">
+		<layer id="37" name="370" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -805,7 +805,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="38" name="371" precision="FP32" type="Convolution">
+		<layer id="38" name="371" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="192" kernel="3,3" output="192" pads_begin="1,1" pads_end="1,1" strides="2,2"/>
 			<input>
 				<port id="0">
@@ -824,11 +824,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="243712" size="6912"/>
-				<biases offset="250624" size="768"/>
+				<weights offset="121856" size="3456"/>
+				<biases offset="125312" size="384"/>
 			</blobs>
 		</layer>
-		<layer id="39" name="373" precision="FP32" type="Clamp">
+		<layer id="39" name="373" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -847,7 +847,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="40" name="374" precision="FP32" type="Convolution">
+		<layer id="40" name="374" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="64" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -866,11 +866,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="251392" size="49152"/>
-				<biases offset="300544" size="256"/>
+				<weights offset="125696" size="24576"/>
+				<biases offset="150272" size="128"/>
 			</blobs>
 		</layer>
-		<layer id="41" name="376" precision="FP32" type="Convolution">
+		<layer id="41" name="376" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="384" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -889,11 +889,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="300800" size="98304"/>
-				<biases offset="399104" size="1536"/>
+				<weights offset="150400" size="49152"/>
+				<biases offset="199552" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="42" name="378" precision="FP32" type="Clamp">
+		<layer id="42" name="378" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -912,7 +912,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="43" name="379" precision="FP32" type="Convolution">
+		<layer id="43" name="379" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="384" kernel="3,3" output="384" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -931,11 +931,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="400640" size="13824"/>
-				<biases offset="414464" size="1536"/>
+				<weights offset="200320" size="6912"/>
+				<biases offset="207232" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="44" name="381" precision="FP32" type="Clamp">
+		<layer id="44" name="381" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -954,7 +954,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="45" name="382" precision="FP32" type="Convolution">
+		<layer id="45" name="382" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="64" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -973,11 +973,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="416000" size="98304"/>
-				<biases offset="514304" size="256"/>
+				<weights offset="208000" size="49152"/>
+				<biases offset="257152" size="128"/>
 			</blobs>
 		</layer>
-		<layer id="46" name="384" precision="FP32" type="Eltwise">
+		<layer id="46" name="384" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1002,7 +1002,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="47" name="385" precision="FP32" type="Convolution">
+		<layer id="47" name="385" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="384" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1021,11 +1021,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="514560" size="98304"/>
-				<biases offset="612864" size="1536"/>
+				<weights offset="257280" size="49152"/>
+				<biases offset="306432" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="48" name="387" precision="FP32" type="Clamp">
+		<layer id="48" name="387" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1044,7 +1044,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="49" name="388" precision="FP32" type="Convolution">
+		<layer id="49" name="388" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="384" kernel="3,3" output="384" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1063,11 +1063,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="614400" size="13824"/>
-				<biases offset="628224" size="1536"/>
+				<weights offset="307200" size="6912"/>
+				<biases offset="314112" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="50" name="390" precision="FP32" type="Clamp">
+		<layer id="50" name="390" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1086,7 +1086,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="51" name="391" precision="FP32" type="Convolution">
+		<layer id="51" name="391" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="64" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1105,11 +1105,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="629760" size="98304"/>
-				<biases offset="728064" size="256"/>
+				<weights offset="314880" size="49152"/>
+				<biases offset="364032" size="128"/>
 			</blobs>
 		</layer>
-		<layer id="52" name="393" precision="FP32" type="Eltwise">
+		<layer id="52" name="393" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1134,7 +1134,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="53" name="394" precision="FP32" type="Convolution">
+		<layer id="53" name="394" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="384" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1153,11 +1153,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="728320" size="98304"/>
-				<biases offset="826624" size="1536"/>
+				<weights offset="364160" size="49152"/>
+				<biases offset="413312" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="54" name="396" precision="FP32" type="Clamp">
+		<layer id="54" name="396" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1176,7 +1176,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="55" name="397" precision="FP32" type="Convolution">
+		<layer id="55" name="397" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="384" kernel="3,3" output="384" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1195,11 +1195,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="828160" size="13824"/>
-				<biases offset="841984" size="1536"/>
+				<weights offset="414080" size="6912"/>
+				<biases offset="420992" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="56" name="399" precision="FP32" type="Clamp">
+		<layer id="56" name="399" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1218,7 +1218,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="57" name="400" precision="FP32" type="Convolution">
+		<layer id="57" name="400" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="64" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1237,11 +1237,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="843520" size="98304"/>
-				<biases offset="941824" size="256"/>
+				<weights offset="421760" size="49152"/>
+				<biases offset="470912" size="128"/>
 			</blobs>
 		</layer>
-		<layer id="58" name="402" precision="FP32" type="Eltwise">
+		<layer id="58" name="402" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1266,7 +1266,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="59" name="403" precision="FP32" type="Convolution">
+		<layer id="59" name="403" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="384" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1285,11 +1285,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="942080" size="98304"/>
-				<biases offset="1040384" size="1536"/>
+				<weights offset="471040" size="49152"/>
+				<biases offset="520192" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="60" name="405" precision="FP32" type="Clamp">
+		<layer id="60" name="405" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1308,7 +1308,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="61" name="406" precision="FP32" type="Convolution">
+		<layer id="61" name="406" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="384" kernel="3,3" output="384" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1327,11 +1327,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1041920" size="13824"/>
-				<biases offset="1055744" size="1536"/>
+				<weights offset="520960" size="6912"/>
+				<biases offset="527872" size="768"/>
 			</blobs>
 		</layer>
-		<layer id="62" name="408" precision="FP32" type="Clamp">
+		<layer id="62" name="408" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1350,7 +1350,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="63" name="409" precision="FP32" type="Convolution">
+		<layer id="63" name="409" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="96" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1369,11 +1369,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1057280" size="147456"/>
-				<biases offset="1204736" size="384"/>
+				<weights offset="528640" size="73728"/>
+				<biases offset="602368" size="192"/>
 			</blobs>
 		</layer>
-		<layer id="64" name="411" precision="FP32" type="Convolution">
+		<layer id="64" name="411" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="576" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1392,11 +1392,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1205120" size="221184"/>
-				<biases offset="1426304" size="2304"/>
+				<weights offset="602560" size="110592"/>
+				<biases offset="713152" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="65" name="413" precision="FP32" type="Clamp">
+		<layer id="65" name="413" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1415,7 +1415,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="66" name="414" precision="FP32" type="Convolution">
+		<layer id="66" name="414" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="576" kernel="3,3" output="576" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1434,11 +1434,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1428608" size="20736"/>
-				<biases offset="1449344" size="2304"/>
+				<weights offset="714304" size="10368"/>
+				<biases offset="724672" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="67" name="416" precision="FP32" type="Clamp">
+		<layer id="67" name="416" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1457,7 +1457,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="68" name="417" precision="FP32" type="Convolution">
+		<layer id="68" name="417" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="96" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1476,11 +1476,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1451648" size="221184"/>
-				<biases offset="1672832" size="384"/>
+				<weights offset="725824" size="110592"/>
+				<biases offset="836416" size="192"/>
 			</blobs>
 		</layer>
-		<layer id="69" name="419" precision="FP32" type="Eltwise">
+		<layer id="69" name="419" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1505,7 +1505,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="70" name="420" precision="FP32" type="Convolution">
+		<layer id="70" name="420" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="576" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1524,11 +1524,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1673216" size="221184"/>
-				<biases offset="1894400" size="2304"/>
+				<weights offset="836608" size="110592"/>
+				<biases offset="947200" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="71" name="422" precision="FP32" type="Clamp">
+		<layer id="71" name="422" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1547,7 +1547,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="72" name="423" precision="FP32" type="Convolution">
+		<layer id="72" name="423" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="576" kernel="3,3" output="576" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1566,11 +1566,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1896704" size="20736"/>
-				<biases offset="1917440" size="2304"/>
+				<weights offset="948352" size="10368"/>
+				<biases offset="958720" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="73" name="425" precision="FP32" type="Clamp">
+		<layer id="73" name="425" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1589,7 +1589,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="74" name="426" precision="FP32" type="Convolution">
+		<layer id="74" name="426" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="96" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1608,11 +1608,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="1919744" size="221184"/>
-				<biases offset="2140928" size="384"/>
+				<weights offset="959872" size="110592"/>
+				<biases offset="1070464" size="192"/>
 			</blobs>
 		</layer>
-		<layer id="75" name="428" precision="FP32" type="Eltwise">
+		<layer id="75" name="428" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1637,7 +1637,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="76" name="429" precision="FP32" type="Convolution">
+		<layer id="76" name="429" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="576" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1656,11 +1656,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="2141312" size="221184"/>
-				<biases offset="2362496" size="2304"/>
+				<weights offset="1070656" size="110592"/>
+				<biases offset="1181248" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="77" name="431" precision="FP32" type="Clamp">
+		<layer id="77" name="431" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1679,7 +1679,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="78" name="432" precision="FP32" type="Convolution">
+		<layer id="78" name="432" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="576" kernel="3,3" output="576" pads_begin="1,1" pads_end="1,1" strides="2,2"/>
 			<input>
 				<port id="0">
@@ -1698,11 +1698,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="2364800" size="20736"/>
-				<biases offset="2385536" size="2304"/>
+				<weights offset="1182400" size="10368"/>
+				<biases offset="1192768" size="1152"/>
 			</blobs>
 		</layer>
-		<layer id="79" name="434" precision="FP32" type="Clamp">
+		<layer id="79" name="434" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1721,7 +1721,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="80" name="435" precision="FP32" type="Convolution">
+		<layer id="80" name="435" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="160" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1740,11 +1740,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="2387840" size="368640"/>
-				<biases offset="2756480" size="640"/>
+				<weights offset="1193920" size="184320"/>
+				<biases offset="1378240" size="320"/>
 			</blobs>
 		</layer>
-		<layer id="81" name="437" precision="FP32" type="Convolution">
+		<layer id="81" name="437" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="960" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1763,11 +1763,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="2757120" size="614400"/>
-				<biases offset="3371520" size="3840"/>
+				<weights offset="1378560" size="307200"/>
+				<biases offset="1685760" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="82" name="439" precision="FP32" type="Clamp">
+		<layer id="82" name="439" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1786,7 +1786,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="83" name="440" precision="FP32" type="Convolution">
+		<layer id="83" name="440" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="960" kernel="3,3" output="960" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1805,11 +1805,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="3375360" size="34560"/>
-				<biases offset="3409920" size="3840"/>
+				<weights offset="1687680" size="17280"/>
+				<biases offset="1704960" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="84" name="442" precision="FP32" type="Clamp">
+		<layer id="84" name="442" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1828,7 +1828,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="85" name="443" precision="FP32" type="Convolution">
+		<layer id="85" name="443" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="160" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1847,11 +1847,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="3413760" size="614400"/>
-				<biases offset="4028160" size="640"/>
+				<weights offset="1706880" size="307200"/>
+				<biases offset="2014080" size="320"/>
 			</blobs>
 		</layer>
-		<layer id="86" name="445" precision="FP32" type="Eltwise">
+		<layer id="86" name="445" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -1876,7 +1876,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="87" name="446" precision="FP32" type="Convolution">
+		<layer id="87" name="446" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="960" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1895,11 +1895,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="4028800" size="614400"/>
-				<biases offset="4643200" size="3840"/>
+				<weights offset="2014400" size="307200"/>
+				<biases offset="2321600" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="88" name="448" precision="FP32" type="Clamp">
+		<layer id="88" name="448" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1918,7 +1918,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="89" name="449" precision="FP32" type="Convolution">
+		<layer id="89" name="449" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="960" kernel="3,3" output="960" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1937,11 +1937,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="4647040" size="34560"/>
-				<biases offset="4681600" size="3840"/>
+				<weights offset="2323520" size="17280"/>
+				<biases offset="2340800" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="90" name="451" precision="FP32" type="Clamp">
+		<layer id="90" name="451" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -1960,7 +1960,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="91" name="452" precision="FP32" type="Convolution">
+		<layer id="91" name="452" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="160" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -1979,11 +1979,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="4685440" size="614400"/>
-				<biases offset="5299840" size="640"/>
+				<weights offset="2342720" size="307200"/>
+				<biases offset="2649920" size="320"/>
 			</blobs>
 		</layer>
-		<layer id="92" name="454" precision="FP32" type="Eltwise">
+		<layer id="92" name="454" precision="FP16" type="Eltwise">
 			<data operation="sum"/>
 			<input>
 				<port id="0">
@@ -2008,7 +2008,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="93" name="455" precision="FP32" type="Convolution">
+		<layer id="93" name="455" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="960" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2027,11 +2027,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="5300480" size="614400"/>
-				<biases offset="5914880" size="3840"/>
+				<weights offset="2650240" size="307200"/>
+				<biases offset="2957440" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="94" name="457" precision="FP32" type="Clamp">
+		<layer id="94" name="457" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -2050,7 +2050,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="95" name="458" precision="FP32" type="Convolution">
+		<layer id="95" name="458" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="960" kernel="3,3" output="960" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2069,11 +2069,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="5918720" size="34560"/>
-				<biases offset="5953280" size="3840"/>
+				<weights offset="2959360" size="17280"/>
+				<biases offset="2976640" size="1920"/>
 			</blobs>
 		</layer>
-		<layer id="96" name="460" precision="FP32" type="Clamp">
+		<layer id="96" name="460" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -2092,7 +2092,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="97" name="461" precision="FP32" type="Convolution">
+		<layer id="97" name="461" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="320" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2111,11 +2111,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="5957120" size="1228800"/>
-				<biases offset="7185920" size="1280"/>
+				<weights offset="2978560" size="614400"/>
+				<biases offset="3592960" size="640"/>
 			</blobs>
 		</layer>
-		<layer id="98" name="463" precision="FP32" type="Convolution">
+		<layer id="98" name="463" precision="FP16" type="Convolution">
 			<data dilations="1,1" group="1" kernel="1,1" output="1280" pads_begin="0,0" pads_end="0,0" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2134,11 +2134,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="7187200" size="1638400"/>
-				<biases offset="8825600" size="5120"/>
+				<weights offset="3593600" size="819200"/>
+				<biases offset="4412800" size="2560"/>
 			</blobs>
 		</layer>
-		<layer id="99" name="465" precision="FP32" type="Clamp">
+		<layer id="99" name="465" precision="FP16" type="Clamp">
 			<data max="6.0" min="0.0"/>
 			<input>
 				<port id="0">
@@ -2157,17 +2157,17 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="100" name="9106_const" precision="I32" type="Const">
+		<layer id="100" name="9097_const" precision="I32" type="Const">
 			<output>
 				<port id="1">
 					<dim>4</dim>
 				</port>
 			</output>
 			<blobs>
-				<custom offset="8830720" size="16"/>
+				<custom offset="4415360" size="16"/>
 			</blobs>
 		</layer>
-		<layer id="101" name="466/Reshape" precision="FP32" type="Reshape">
+		<layer id="101" name="466/Reshape" precision="FP16" type="Reshape">
 			<input>
 				<port id="0">
 					<dim>1</dim>
@@ -2188,7 +2188,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="102" name="466/Pool" precision="FP32" type="Pooling">
+		<layer id="102" name="466/Pool" precision="FP16" type="Pooling">
 			<data exclude-pad="false" kernel="10,1" pads_begin="0,0" pads_end="0,0" pool-method="avg" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2207,17 +2207,17 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="103" name="9108_const" precision="I32" type="Const">
+		<layer id="103" name="9099_const" precision="I32" type="Const">
 			<output>
 				<port id="1">
 					<dim>3</dim>
 				</port>
 			</output>
 			<blobs>
-				<custom offset="8830736" size="12"/>
+				<custom offset="4415376" size="12"/>
 			</blobs>
 		</layer>
-		<layer id="104" name="466/FinalReshape" precision="FP32" type="Reshape">
+		<layer id="104" name="466/FinalReshape" precision="FP16" type="Reshape">
 			<input>
 				<port id="0">
 					<dim>1</dim>
@@ -2237,17 +2237,17 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="105" name="9097_const" precision="I32" type="Const">
+		<layer id="105" name="9106_const" precision="I32" type="Const">
 			<output>
 				<port id="1">
 					<dim>4</dim>
 				</port>
 			</output>
 			<blobs>
-				<custom offset="8830748" size="16"/>
+				<custom offset="4415388" size="16"/>
 			</blobs>
 		</layer>
-		<layer id="106" name="467/Reshape" precision="FP32" type="Reshape">
+		<layer id="106" name="467/Reshape" precision="FP16" type="Reshape">
 			<input>
 				<port id="0">
 					<dim>1</dim>
@@ -2267,7 +2267,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="107" name="467/Pool" precision="FP32" type="Pooling">
+		<layer id="107" name="467/Pool" precision="FP16" type="Pooling">
 			<data exclude-pad="false" kernel="8,1" pads_begin="0,0" pads_end="0,0" pool-method="avg" strides="1,1"/>
 			<input>
 				<port id="0">
@@ -2286,17 +2286,17 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="108" name="9099_const" precision="I32" type="Const">
+		<layer id="108" name="9108_const" precision="I32" type="Const">
 			<output>
 				<port id="1">
 					<dim>2</dim>
 				</port>
 			</output>
 			<blobs>
-				<custom offset="8830764" size="8"/>
+				<custom offset="4415404" size="8"/>
 			</blobs>
 		</layer>
-		<layer id="109" name="467/FinalReshape" precision="FP32" type="Reshape">
+		<layer id="109" name="467/FinalReshape" precision="FP16" type="Reshape">
 			<input>
 				<port id="0">
 					<dim>1</dim>
@@ -2315,7 +2315,7 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="110" name="470" precision="FP32" type="FullyConnected">
+		<layer id="110" name="470" precision="FP16" type="FullyConnected">
 			<data out-size="2"/>
 			<input>
 				<port id="0">
@@ -2330,11 +2330,11 @@
 				</port>
 			</output>
 			<blobs>
-				<weights offset="8830772" size="10240"/>
-				<biases offset="8841012" size="8"/>
+				<weights offset="4415412" size="5120"/>
+				<biases offset="4420532" size="4"/>
 			</blobs>
 		</layer>
-		<layer id="111" name="output" precision="FP32" type="Activation">
+		<layer id="111" name="output" precision="FP16" type="Activation">
 			<data type="sigmoid"/>
 			<input>
 				<port id="0">
@@ -2478,7 +2478,7 @@
 		<cli_parameters>
 			<blobs_as_inputs value="False"/>
 			<caffe_parser_path value="DIR"/>
-			<data_type value="float"/>
+			<data_type value="FP16"/>
 			<disable_nhwc_to_nchw value="False"/>
 			<disable_omitting_optional value="False"/>
 			<disable_resnet_optimization value="False"/>
