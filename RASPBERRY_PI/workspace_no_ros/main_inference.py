@@ -1,18 +1,27 @@
 import time
-from subprocess import Popen, PIPE 
-from multiprocessing.connection import Listener
 import socket
 import json
 import cv2
 import pdb
 import numpy as np
 from arduino_motor import ArduinoMotor
+from multiprocessing import Process, Manager
+
+
+
+
+def socket_listener(data):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind(('', 8080))
+    while(True):
+        data_raw,addr = s.recvfrom(1024)
+        data.update(json.loads(data_raw))
+
 
 
 if __name__ == "__main__":
 
-    socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    socket.bind(('', 8080))
+    
 
     cv2.destroyAllWindows()
     device = cv2.VideoCapture(0)
@@ -27,8 +36,14 @@ if __name__ == "__main__":
     # test the ncs
 
     m = ArduinoMotor()
-    
-    
+
+    manager = Manager()
+
+    data = manager.dict()
+
+
+    socket_process = Process(target=socket_listener, args=(data,))
+    socket_process.start()
 
     net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
     net.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
@@ -53,17 +68,16 @@ if __name__ == "__main__":
 
         throttle = out[0][0] * 15 + 90
         steer = out[0][1] * 60 + 60
-
-        socket.bind(('', 8080))
-        data_raw,addr = socket.recvfrom(1024)
-        data = json.loads(data_raw)
-        socket.close()
-
-        if(data["log_status"] != "INFERENCE"):
-            data = {
+        
+        new_data = dict(data)
+        print(new_data)
+        if(new_data["manual_status"] == "INFERENCE"):
+            new_data.update({
                 "throttle":throttle,
                 "steer":steer,
-            }
+            })
 
-        m.send_data(data)
+        print(new_data) 
+        #m.send_data(new_data)
+
 
