@@ -21,8 +21,6 @@ def socket_listener(data):
 
 if __name__ == "__main__":
 
-    
-
     cv2.destroyAllWindows()
     device = cv2.VideoCapture(0)
 
@@ -70,14 +68,12 @@ if __name__ == "__main__":
         steer = out[0][1] * 60 + 60
         
         new_data = dict(data)
-        print(new_data)
         if(new_data["manual_status"] == "INFERENCE"):
             new_data.update({
                 "throttle":throttle,
                 "steer":steer,
             })
 
-        print(new_data) 
         #m.send_data(new_data)
 
 
