@@ -100,10 +100,10 @@ setInterval(()=>{
     }
 
     if(stop_manual){
-      log_status = "INFERENCE";
+      manual_status = "INFERENCE";
     }
     if(start_manual){
-        log_status = "MANUAL";
+        manual_status = "MANUAL";
     }
 
     let status = document.getElementById('log_status_content');
@@ -117,6 +117,7 @@ setInterval(()=>{
     data["steer"] = lr;
     data["log_status"]=log_status;
     data["log_dir"] = log_dir;
+    data["manual_status"] = manual_status;
     post(data)
 }, 50);
 

@@ -14,6 +14,7 @@ class Socket:
         val += '"direction": "forward", '
         val += '"steer":%f, '%data["steer"]
         val += '"log_status": "%s", '%(str(data["log_status"]))
+        val += '"manual_status": "%s", '%(str(data["manual_status"]))
         val += '"log_dir": "%s"}'%(str(data["log_dir"]))
         self.sock.sendto(str.encode(val), (self.car_ip,
                                             self.car_port))

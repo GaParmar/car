@@ -51,12 +51,13 @@ if __name__ == "__main__":
 
         out = net.forward()
 
-        throttle = out[0] * 15 + 90
-        steer = out[1] * 60 + 60
+        throttle = out[0][0] * 15 + 90
+        steer = out[0][1] * 60 + 60
 
-
+        socket.bind(('', 8080))
         data_raw,addr = socket.recvfrom(1024)
         data = json.loads(data_raw)
+        socket.close()
 
         if(data["log_status"] != "INFERENCE"):
             data = {
