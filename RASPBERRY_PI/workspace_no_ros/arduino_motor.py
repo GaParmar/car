@@ -1,3 +1,4 @@
+from smbus2 import SMBus
 
 class ArduinoMotor:
     def __init__(self, addr=0x8):
