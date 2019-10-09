@@ -6,74 +6,62 @@ import pdb
 import numpy as np
 from arduino_motor import ArduinoMotor
 from multiprocessing import Process, Manager
+from ps4_interface import PS4Interface
+
+
+THROTTLE_ALLOWANCE = 20
 
 
 
+def convert_controls(ps4_data, mode):
+    throttle = int((ps4_data["ly"] - 128) * THROTTLE_ALLOWANCE / 128 + 90)
+    steer = int(ps4_data["rx"] * 180 / 255)
 
-def socket_listener(data):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind(('', 8080))
-    while(True):
-        data_raw,addr = s.recvfrom(1024)
-        data.update(json.loads(data_raw))
+    if(ps4_data["cross"] == 1):
+        mode = "INFERENCE"
+    if(ps4_data["square"] == 1):
+        mode = "MANUAL"
 
+    return throttle, steer, mode
 
 
 if __name__ == "__main__":
 
-    cv2.destroyAllWindows()
     device = cv2.VideoCapture(0)
-
-    # start the process listening to incoming socket
-    # d_process["socket"] = Popen(['python3', './socket_process.py'])
-    # d_listeners["socket"] = Listener(('localhost', 6000), authkey=b"secret")
-    # d_conns["socket"] = d_listeners["socket"].accept()
-        # data = d_conns["socket"].recv()
-        # print(data)
-
-    # test the ncs
 
     m = ArduinoMotor()
 
-    manager = Manager()
-
-    data = manager.dict()
-
-
-    socket_process = Process(target=socket_listener, args=(data,))
-    socket_process.start()
+    ps4 = PS4Interface()
 
     net = cv2.dnn.readNet("mobilenetv2.xml", "mobilenetv2.bin")
     net.setPreferableTarget(cv2.dnn.DNN_TARGET_MYRIAD)
     
+    mode = "MANUAL"
 
     # the main loop
     while True:
 
-        ret, frame = device.read()
+        throttle, steer, mode = convert_controls(ps4.data, mode)
 
-        left = frame[:,:320]
-        right = frame[:,320:]
+        if(mode == "INFERENCE"):
+            ret, frame = device.read()
+
+            left = frame[:,:320]
+            right = frame[:,320:]
 
 
-        blob = cv2.dnn.blobFromImage(left, 1.0, (320, 240), (104.0, 177.0, 123.0))
-        net.setInput(blob, "left")
+            blob = cv2.dnn.blobFromImage(left, 1.0, (320, 240), (104.0, 177.0, 123.0))
+            net.setInput(blob, "left")
 
-        blob = cv2.dnn.blobFromImage(right, 1.0, (320, 240), (104.0, 177.0, 123.0))
-        net.setInput(blob, "right")
+            blob = cv2.dnn.blobFromImage(right, 1.0, (320, 240), (104.0, 177.0, 123.0))
+            net.setInput(blob, "right")
 
-        out = net.forward()
+            out = net.forward()
 
-        throttle = out[0][0] * 15 + 90
-        steer = out[0][1] * 60 + 60
+            throttle = min(out[0][0], 90 + THROTTLE_ALLOWANCE)
+            steer = out[0][1]
+        else:
+            time.sleep(.05)
         
-        new_data = dict(data)
-        if(new_data["manual_status"] == "INFERENCE"):
-            new_data.update({
-                "throttle":throttle,
-                "steer":steer,
-            })
-
-        #m.send_data(new_data)
-
-
+        
+        m.send_data({"throttle":throttle, "steer":steer})
