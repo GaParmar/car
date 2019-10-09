@@ -1,4 +1,6 @@
+#gunicorn rest_server:app
 import falcon
+from falcon_cors import CORS
 import json
 import os
 
@@ -43,7 +45,9 @@ class LogPath(object):
 
 
 
-app = falcon.API()
+public_cors = CORS(allow_all_origins=True, allow_methods_list=["GET","PATCH","POST","DELETE"])
+app = falcon.API(middleware=[public_cors.middleware])
+
 log_path = LogPath()
 app.add_route('/log_path', log_path)
 
