@@ -6,8 +6,8 @@ class ArduinoMotor:
         self.i2c_bus = SMBus(1)
     def send_data(self, data):
         # send the throttle first
-        data = [ord('t'), int(data["throttle"])]
-        self.i2c_bus.write_i2c_block_data(self.arduino_i2c_addr,0,data)
+        data_new = [ord('t'), int(data["throttle"])]
+        self.i2c_bus.write_i2c_block_data(self.arduino_i2c_addr,0,data_new)
         # senf the steering angle next
-        data = [ord('s'), int(data["steer"])]
-        self.i2c_bus.write_i2c_block_data(self.arduino_i2c_addr,0,data)
+        data_new = [ord('s'), int(data["steer"])]
+        self.i2c_bus.write_i2c_block_data(self.arduino_i2c_addr,0,data_new)
