@@ -27,8 +27,7 @@ def update_inputs(dev, data):
                     data["rx"] = event.value
                 elif(event.code == 5):
                     data["ry"] = event.value
-            
-        
+
     asyncio.ensure_future(update_inputs(dev, data))
     loop = asyncio.get_event_loop()
     loop.run_forever()
