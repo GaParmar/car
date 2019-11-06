@@ -23,9 +23,9 @@ def update_inputs(dev, data):
                     data["lx"] = event.value
                 elif(event.code == 1):
                     data["ly"] = event.value
-                elif(event.code == 3):
+                elif(event.code == 2):
                     data["rx"] = event.value
-                elif(event.code == 4):
+                elif(event.code == 5):
                     data["ry"] = event.value
             
         
@@ -46,7 +46,7 @@ class PS4Interface:
         path = None
 
         for device in devices:
-            if(device.name == "Wireless Controller"):
+            if("Wireless Controller" in device.name):
                 path = device.path
 
         dev = InputDevice(path)

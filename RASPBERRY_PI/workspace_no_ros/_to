@@ -23,7 +23,6 @@ THROTTLE_ALLOWANCE = 20
 
 
 def convert_controls(ps4_data, mode, log_dir):
-    print(ps4_data)
     throttle = int((ps4_data["ly"] - 128) * THROTTLE_ALLOWANCE / 128 + 90)
     steer = int(ps4_data["rx"] * 180 / 255)
 
@@ -33,7 +32,7 @@ def convert_controls(ps4_data, mode, log_dir):
                 log_dir = json.load(json_file)["log_path"]
         mode = "LOGGING"
         print(mode)
-    if(ps4_data["triangle"] == 1):
+    if(ps4_data["square"] == 1):
         mode = "NOTLOGGING"
         print(mode)
 
@@ -44,8 +43,8 @@ def convert_controls(ps4_data, mode, log_dir):
 def save_to_file(dname, counter, buff):
     if not os.path.exists(dname):
         os.makedirs(dname)
-    filename = os.path.join(dname, "log_{}.pkl".format(counter))
-    with open(filename, "wb") as f:
+    filename = os.path.join(dname, "log_%d.pkl"%counter)
+    with open(fname, "wb") as f:
         pickle.dump(buff, f)
 
 if __name__ == "__main__":
@@ -96,3 +95,4 @@ if __name__ == "__main__":
 
         while time.time()-start_main < period:
             pass
+        print(time.time() - start_main)
