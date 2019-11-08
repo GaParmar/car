@@ -1,5 +1,6 @@
 import evdev
 from evdev import InputDevice, categorize, ecodes
+import time
 import asyncio
 from multiprocessing import Process, Manager
 
@@ -27,6 +28,7 @@ def update_inputs(dev, data):
                     data["rx"] = event.value
                 elif(event.code == 5):
                     data["ry"] = event.value
+                data["timestamp"] = time.time()
 
     asyncio.ensure_future(update_inputs(dev, data))
     loop = asyncio.get_event_loop()

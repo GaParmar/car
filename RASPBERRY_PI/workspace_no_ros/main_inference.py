@@ -14,6 +14,9 @@ THROTTLE_ALLOWANCE = 20
 
 
 def convert_controls(ps4_data, mode):
+    if(time.time() - ps4_data["timestamp"] > .5):
+        return 90, 90, "MANUAL"
+
     throttle = int((ps4_data["ly"] - 128) * THROTTLE_ALLOWANCE / 128 + 90)
     steer = int(ps4_data["rx"] * 180 / 255)
 
