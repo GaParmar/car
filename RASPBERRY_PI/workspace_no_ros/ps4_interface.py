@@ -8,6 +8,7 @@ from multiprocessing import Process, Manager
 def update_inputs(dev, data):
     async def update_inputs(dev, data):
         async for event in dev.async_read_loop():
+            data["timestamp"] = time.time()
             if event.type == 1:
                 if(event.code == 304):
                     data["cross"] = event.value
@@ -28,7 +29,6 @@ def update_inputs(dev, data):
                     data["rx"] = event.value
                 elif(event.code == 5):
                     data["ry"] = event.value
-                data["timestamp"] = time.time()
 
     asyncio.ensure_future(update_inputs(dev, data))
     loop = asyncio.get_event_loop()
@@ -38,7 +38,7 @@ def update_inputs(dev, data):
 class PS4Interface:
     def __init__(self):
         manager = Manager()
-        data = manager.dict({"cross": 0, "square": 0, "triangle": 0, "circle": 0, "lx": 128, "ly": 128, "rx": 128, "ry": 128})
+        data = manager.dict({"cross": 0, "square": 0, "triangle": 0, "circle": 0, "lx": 128, "ly": 128, "rx": 128, "ry": 128, "timestamp":time.time()})
 
         self.data = data
 
