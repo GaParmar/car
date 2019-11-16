@@ -19,8 +19,8 @@ period = 0.05
 samples_per_file = 100
 
 
-THROTTLE_ALLOWANCE = 20 
-STEER_ALLOWANCE = 25
+THROTTLE_ALLOWANCE = 17 
+STEER_ALLOWANCE = 25 
 
 
 def convert_controls(ps4_data, mode, log_dir):
@@ -29,6 +29,8 @@ def convert_controls(ps4_data, mode, log_dir):
         return 90, 90, "MANUAL", log_dir
 
     throttle = int((ps4_data["ly"] - 128) * THROTTLE_ALLOWANCE / 128 + 90)
+    if(throttle >90):
+        throttle += 10
     steer = int((ps4_data["rx"] - 128) * STEER_ALLOWANCE / 128 + 90)
     
     print(throttle, steer)
@@ -84,28 +86,30 @@ if __name__ == "__main__":
         start_main = time.time()
 
         throttle, steer, STATE, log_dir = convert_controls(ps4.data, STATE, log_dir)
+        
+        data = {
+            "throttle":throttle,
+            "steer":steer,
+            "timestamp":time.time()
+        }
+                        
+        try:
+            m.send_data(data)
+        except:
+            print("may be running away")
 
         # get image from the camera
         status, img = device.read()
         ts = time.time()
         # write to motor
 
-        data = {
-            "throttle":throttle,
-            "steer":steer,
-            "image":img,
-            "timestamp":ts
-        }
-
-        try:
-            m.send_data(data)
-        except:
-            print("may be running away")
+        data["image"]  = img
 
 
         #log
         if STATE == "LOGGING":
-            log_buffer.append(data)
+            if(data["steer"] != 90 or data["throttle"] != 90):
+                log_buffer.append(data)
 
         if len(log_buffer)>=samples_per_file:
             # start a new sub process to save to file

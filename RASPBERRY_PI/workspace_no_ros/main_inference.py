@@ -54,11 +54,14 @@ if __name__ == "__main__":
             left = frame[:,:320]
             right = frame[:,320:]
 
+            left = cv2.resize(left, (80,60))
+            right = cv2.resize(right, (80,60))
 
-            blob = cv2.dnn.blobFromImage(left, 1.0, (320, 240), (104.0, 177.0, 123.0))
+
+            blob = cv2.dnn.blobFromImage(left, 1.0, (80, 60), (104.0, 177.0, 123.0))
             net.setInput(blob, "left")
 
-            blob = cv2.dnn.blobFromImage(right, 1.0, (320, 240), (104.0, 177.0, 123.0))
+            blob = cv2.dnn.blobFromImage(right, 1.0, (80, 60), (104.0, 177.0, 123.0))
             net.setInput(blob, "right")
 
             out = net.forward()
