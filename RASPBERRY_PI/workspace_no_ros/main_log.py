@@ -19,14 +19,14 @@ period = 0.05
 samples_per_file = 100
 
 
-THROTTLE_ALLOWANCE = 20 
+THROTTLE_ALLOWANCE = 10 
 STEER_ALLOWANCE = 20
 
 
 def convert_controls(ps4_data, mode, log_dir):
     if(time.time() - ps4_data["timestamp"] > .5):
         print("disconnected from timestamp")
-        return 90, 90, "MANUAL"
+        return 90, 90, "MANUAL", log_dir
 
     throttle = int((ps4_data["ly"] - 128) * THROTTLE_ALLOWANCE / 128 + 90)
     steer = int((ps4_data["rx"] - 128) * STEER_ALLOWANCE / 128 + 90)
@@ -64,11 +64,21 @@ if __name__ == "__main__":
     ps4 = PS4Interface()
 
     log_buffer = []
+
     log_file_counter = 0
+    with open('config.json') as json_file:
+        log_dir = json.load(json_file)["log_path"]
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+        max_log = 0
+        for f in os.listdir(log_dir):
+            val = int(f.split("_")[1].split(".")[0])
+            log_file_counter = max(val, log_file_counter)
+    log_file_counter += 1
+
 
     STATE = "NOTLOGGING"
 
-    log_dir = "dab"
 
     while True:
         start_main = time.time()
@@ -87,7 +97,11 @@ if __name__ == "__main__":
             "timestamp":ts
         }
 
-        m.send_data(data)
+        try:
+            m.send_data(data)
+        except:
+            print("may be running away")
+
 
         #log
         if STATE == "LOGGING":
