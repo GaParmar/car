@@ -1,5 +1,5 @@
 apt install vim
-pip3 install ds4drv
+pip3 install ds4drv smbus2
 echo "daemon=true" > /etc/ds4drv.conf
 
 
